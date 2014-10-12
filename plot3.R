@@ -24,9 +24,9 @@ plot3 <- function() {
     # Plot Global Active Power against weekdays and time - 480 * 480 png file in pixels 
     png(file = "plot3.png", width = 480, height = 480, units = "px") 
     with(householddata, plot(datetimes, submetering, type='l', xlab="", ylab="Energy sub metering"))
-    with(subset(householddata, !is.na(householddata$Sub_metering_1)), lines(testcc,householddata$Sub_metering_1,col="black"))
-    with(subset(householddata, !is.na(householddata$Sub_metering_2)), lines(testcc,householddata$Sub_metering_2,col="red"))
-    with(subset(householddata, !is.na(householddata$Sub_metering_3)), lines(testcc,householddata$Sub_metering_3,col="blue"))
+    with(subset(householddata, !is.na(householddata$Sub_metering_1)), lines(datetimes,householddata$Sub_metering_1,col="black"))
+    with(subset(householddata, !is.na(householddata$Sub_metering_2)), lines(datetimes,householddata$Sub_metering_2,col="red"))
+    with(subset(householddata, !is.na(householddata$Sub_metering_3)), lines(datetimes,householddata$Sub_metering_3,col="blue"))
     legend("topright",lwd=1,col=c("black","red","blue"),legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
     dev.off()
 }
