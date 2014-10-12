@@ -14,16 +14,16 @@ plot3 <- function() {
     unlink(temp)
     
     # Merge Data and Time to get Date/Time for plot
-    datetimes <- data.frame(cbind(householddata$Date, householddata$Time))
     library(lubridate)
     householddata$Date <- dmy(householddata$Date)
     householddata$Time <- hms(householddata$Time)
     
     datetimes <- householddata$Date + householddata$Time
-    submetering <- householddata$Sub_metering_1 + householddata$Sub_metering_2 + householddata$Sub_metering_3
+
     # Plot Global Active Power against weekdays and time - 480 * 480 png file in pixels 
     png(file = "plot3.png", width = 480, height = 480, units = "px") 
-    with(householddata, plot(datetimes, submetering, type='l', xlab="", ylab="Energy sub metering"))
+    # Plot against Sub_Metering1, then add others
+    with(householddata, plot(datetimes, householddata$Sub_metering_1, type='l', xlab="", ylab="Energy sub metering"))
     with(subset(householddata, !is.na(householddata$Sub_metering_1)), lines(datetimes,householddata$Sub_metering_1,col="black"))
     with(subset(householddata, !is.na(householddata$Sub_metering_2)), lines(datetimes,householddata$Sub_metering_2,col="red"))
     with(subset(householddata, !is.na(householddata$Sub_metering_3)), lines(datetimes,householddata$Sub_metering_3,col="blue"))
