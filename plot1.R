@@ -1,4 +1,6 @@
-
+# This function downloads and unzips household_power_consumption.zip from web site
+# It limits the dataset to the 1st and 2nd February
+# It then histograms the Global Active Power for the 1st and 2nd of February
 plot1 <- function() {
     # Download zip file, unzip and read into householddata data frame 
     library(sqldf)
